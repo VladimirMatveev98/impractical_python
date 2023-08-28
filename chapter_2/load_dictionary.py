@@ -21,7 +21,17 @@ def load(file):
               format(e, file))
         sys.exit(1)
 
+def optimize(list):
+    """Возвращает новый список без однобуквенных 'слов' """
+    res_list = []
+    for item in list:
+        if len(item) > 1:
+            res_list.append(item)
+    return res_list
+
+
 if __name__ == '__main__':
 
     PATH = "D:/Python's_projects/STUFF/2of4brif.txt"
-    print(load(PATH))
+    print(len(load(PATH)))
+    print(len(optimize(load(PATH))))
