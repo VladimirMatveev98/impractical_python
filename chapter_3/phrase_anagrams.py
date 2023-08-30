@@ -6,6 +6,7 @@ import load_dictionary
 dict_file = load_dictionary.load("D:/Python's_projects/STUFF/2of4brif.txt")
 #Удалить однобуквенные "слова"
 dict_file = load_dictionary.optimize(dict_file)
+
 #Добавить необходимые предлоги 'a' и 'i'
 dict_file.append('a')
 dict_file.append('i')
@@ -35,9 +36,14 @@ def find_anagrams(name, word_list):
 
 
 def process_choice(name):
+    """Позволяет пользователю выбрать часть анаграммы
+    из списка и добавляет эту часть к итоговому результату.
+    Возвращает выбранную часть и оставшиеся буквы.
+    """
+
     while True:
-        msg = """\nВведите ИЛИ нажмите ENTER, чтобы начать сначала,
-либо введите # для выхода. >> """
+        msg = """\nВведите анаграмму из списка ИЛИ нажмите ENTER,
+чтобы начать сначала, либо введите # для выхода. >> """
 
         choice = input(msg)
         if choice == '':
@@ -60,6 +66,8 @@ def process_choice(name):
 
 
 def main():
+    """Управляет остальными функциями. В бесконечном цикле собирает
+    анаграмму по частям с участием пользователя."""
     name = ''.join(ini_name.lower().split())
     name = name.replace('-', '')
     limit = len(name)
@@ -80,7 +88,7 @@ def main():
 
         elif len(temp_phrase) == limit:
             print('\n***** ГОТОВО! *****\n')
-            print(f'Анаграмма имени = {phrase}.')
+            print(f'Полученная анаграмма = {phrase}.')
             msg = '\n\nПробуем ещё раз -> ENTER, выход -> n. >>'
             try_again = input(msg)
             if try_again.lower() == 'n':
