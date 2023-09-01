@@ -17,7 +17,7 @@ def main():
     word_list = prep_words(name, word_list_ini)
     filtered_cv_map = cv_map_words(word_list)
     filter_1 = cv_map_filter(name, filtered_cv_map)
-    filter_2 = trigrams_filter(filter_1, trigrams_filtered)
+    filter_2 = trigram_filter(filter_1, trigrams_filtered)
     filter_3 = letter_pair_filter(filter_2)
     view_by_letter(name, filter_3)
 
@@ -25,7 +25,7 @@ def main():
 def prep_words(name, word_list_ini):
     print(f"Длина первоначального списка: {len(word_list_ini)}")
     len_name = len(name)
-    word_list = [w.lower() for w in word_list_ini if len(word) == len_name]
+    word_list = [w.lower() for w in word_list_ini if len(w) == len_name]
     print(f"Длина нового списка: {len(word_list)}")
     return word_list
 
@@ -73,4 +73,68 @@ def cv_map_filter(name, filtered_cv_map):
         if temp in filtered_cv_map:
             filter_1.add(candidate)
     print(f"Вариантов после фильтра 1: {len(filter_1)}")
+
     return filter_1
+
+
+def trigram_filter(filter_1, trigrams_filtered):
+    """Удаляет маловероятные триграммы"""
+    filtered = set()
+    for candidate in filter_1:
+        for triplet in trigrams_filtered:
+            triplet = triplet.lower()
+            if triplet in candidate:
+                filtered.add(candidate)
+    filter_2 = filter_1 - filtered
+    print(f"Вариантов после фильтра 2: {len(filter_2)}")
+
+    return filter_2
+
+
+def letter_pair_filter(filter_2):
+    """Удаляет маловероятные буквенные пары"""
+    filtered = set()
+    rejects = ['dt', 'lr', 'md', 'ml', 'mr', 'mt', 'mv',
+               'td', 'tv', 'vd', 'vl', 'vm', 'vr', 'vt']
+
+    first_pair_rejects = ['ld', 'lm', 'lt', 'lv', 'rd',
+                          'rl', 'rm', 'rt', 'rv', 'tl', 'tm']
+
+    for candidate in filter_2:
+        for r in rejects:
+            if r in candidate:
+                filtered.add(candidate)
+        for fp in first_pair_rejects:
+            if candidate.startswith(fp):
+                filtered.add(candidate)
+    filter_3 = filter_2 - filtered
+    print(f"Вариантов после фильтра 3: {len(filter_3)}")
+    if 'voldemort' in filter_3:
+        print("Воландеморт найден!")
+
+    return filter_3
+
+
+def view_by_letter(name, filter_3):
+    """Фильтрует анаграммы по первой букве"""
+    print("Остальные буквы: {}".format(name))
+    first = input("Выберите стартовую букву или нажмите ENTER: ")
+
+    subset = []
+    for candidate in filter_3:
+        if candidate.startswith(first):
+            subset.append(candidate)
+    print(*sorted(subset), sep = '\n')
+    print(f"Число вариантов, начинающися с {first} = {len(subset)}")
+
+    try_again = input("""Нажмите ENTER что бы попробовать ещё раз или
+    введите любой символ для выхода: """)
+    if try_again.lower() == '':
+        view_by_letter(name, filter_3)
+    else:
+        sys.exit()
+
+
+
+if __name__ == '__main__':
+    main()
