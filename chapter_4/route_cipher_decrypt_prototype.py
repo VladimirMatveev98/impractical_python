@@ -1,11 +1,11 @@
-chiper_text = "16 12 8 4 0 1 5 9 13 17 18 14 10 6 2 3 7 11 15 19"
+cipher_text = "16 12 8 4 0 1 5 9 13 17 18 14 10 6 2 3 7 11 15 19"
 
 DEBUG = False
 COLS = 4
 ROWS = 5
 KEY = '-1 2 -3 4'
 
-cipher_list = list(chiper_text.split())
+cipher_list = list(cipher_text.split())
 
 translation_matrix = [None] * COLS
 plaintext = ''
@@ -26,7 +26,7 @@ for k in key_int:
 
     if DEBUG:
         print("Новая итерация цикла!")
-        print(f"Шифр = {chiper_text}")
+        print(f"Шифр = {cipher_text}")
         print(f"Переводная матрица = {translation_matrix}")
         print(f"Длина ключа = {len(key_int)}\n")
 
