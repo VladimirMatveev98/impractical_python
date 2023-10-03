@@ -1,7 +1,9 @@
 """Шифровка текста зигзагообразным шрифтом времён гражданской
 войны США. Данный шифр является "двухрядным" и предназначен
-для коротких сообщений."""
+для коротких сообщений.
+При шифровке пробелы будут утеряны."""
 
+#----------------------------------------------------------------------------
 #ВХОДНЫЕ ДАННЫЕ:
 plaintext = """Давай пересечём реку и отдохнём в тени деревьев"""
 DEBUG = True
@@ -13,11 +15,11 @@ def main():
     двухрядным зигзагообразным шрифтом"""
     message = prep_plaintext(plaintext)
     rails = build_rails(message)
-    chiper_text = encrypt(rails)
+    cipher_text = encrypt(rails)
 
     if DEBUG:
         print(f"Изначальный текст: {plaintext}")
-        print(f"Зашифрованный текст: {chiper_text}")
+        print(f"Зашифрованный текст: {cipher_text}")
 
 
 def prep_plaintext(plaintext):
@@ -42,7 +44,6 @@ def encrypt(rails):
     собирает в одну строку"""
     cipher_text = ' '.join([rails[i:i+5] for i in range(0, len(rails),5)])
 
-    #print(f"Зашифрованный текст: {cipher_text}")
     return cipher_text
 
 
