@@ -94,7 +94,7 @@ def build_matrix(key_int, cipher_list):
         translation_matrix[abs(k) - 1] = col_items
         start += ROWS
         stop += ROWS
-        
+
     return translation_matrix
 
 
