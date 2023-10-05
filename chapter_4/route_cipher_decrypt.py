@@ -63,6 +63,7 @@ def validate_col_row(cipher_list):
     print(f"Примелемые значения столбцов/строк: {factors}")
 
     if ROWS * COLS != len_cipher:
+
         print("Входные строки и столбцы не являются",
               "корректными для длины шифра. Завершение работы.")
         sys.exit(1)
