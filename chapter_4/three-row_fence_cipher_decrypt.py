@@ -14,7 +14,7 @@ DEBUG = True
 
 stubs = ['!', '?', '.', ',', '*', ';', ':']
 
-def main():
+def main(cipher_text):
     """Выполняет программу для дешифровки двухрядного
     зигзагообразного шрифта."""
     message = prep_ciphertext(cipher_text)
@@ -39,15 +39,14 @@ def prep_ciphertext(cipher_text):
 
 
 def split_rails(message):
-    """Разбивает исходное сообщение на три"""
+    """Разбивает исходное сообщение на три части,
+    округляя первые две в большую сторону"""
     start = math.ceil(len(message)/3)
     stop = start * 2
     row1 = message[:start]
     row2 = message[start:stop]
     row3 = message[stop:]
-    print(row1)
-    print(row2)
-    print(row3)
+
     return row1, row2, row3
 
 
@@ -70,4 +69,4 @@ def decrypt(row1, row2, row3):
 
 
 if __name__ == '__main__':
-    main()
+    main(cipher_text)

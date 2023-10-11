@@ -17,7 +17,7 @@ DEBUG = True
 
 stubs = ['!', '?', '.', ',', '*', ';', ':']
 
-def main():
+def main(plaintext):
     """Выполняет программу шифрования сообщения
     двухрядным зигзагообразным шрифтом"""
     message = prep_plaintext(plaintext)
@@ -61,4 +61,4 @@ def encrypt(rails):
 
 
 if __name__ == '__main__':
-    main()
+    main(plaintext)
