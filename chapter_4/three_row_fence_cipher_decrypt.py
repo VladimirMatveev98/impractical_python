@@ -12,9 +12,7 @@ DEBUG = True
 #КОНЕЦ ВХОДНЫХ ДАННЫХ
 #------------------------------------------------------------------------------
 
-stubs = ['!', '?', '.', ',', '*', ';', ':']
-
-def main(cipher_text):
+def main(cipher_text,DEBUG):
     """Выполняет программу для дешифровки двухрядного
     зигзагообразного шрифта."""
     message = prep_ciphertext(cipher_text)
@@ -25,12 +23,15 @@ def main(cipher_text):
         print(f"\nИсходный шифр: {cipher_text}.\n")
         print(f"Ряд 1: {row1}. \nРяд 2: {row2}.\nРяд 3: {row3}.\n")
         print(f"Расшифрованное сообщение: {message}.")
+    else:
+        return message
 
 
 def prep_ciphertext(cipher_text):
     """Удаляет пробелы из исходного сообщения и заменяет
     символы-заглушки на пробелы"""
     message = "".join(cipher_text.split())
+    stubs = ['!', '?', '.', ',', '*', ';', ':']
 
     for sym in stubs:
         message = message.replace(sym, ' ')

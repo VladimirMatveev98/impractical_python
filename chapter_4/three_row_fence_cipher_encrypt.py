@@ -15,9 +15,7 @@ DEBUG = True
 #КОНЕЦ ВХОДНЫХ ДАННЫХ
 #----------------------------------------------------------------------------
 
-stubs = ['!', '?', '.', ',', '*', ';', ':']
-
-def main(plaintext):
+def main(plaintext,DEBUG):
     """Выполняет программу шифрования сообщения
     двухрядным зигзагообразным шрифтом"""
     message = prep_plaintext(plaintext)
@@ -28,10 +26,15 @@ def main(plaintext):
         print(f"Изначальный текст: {plaintext}")
         print(f"Зашифрованный текст: {cipher_text}")
 
+    else:
+        return cipher_text
+
 
 def prep_plaintext(plaintext):
     """Удаляет пробелы, заменяя их символами-заглушками"""
+    stubs = ['!', '?', '.', ',', '*', ';', ':']
     message = ""
+
     for sym in plaintext:
         if sym != " ":
             message += sym.upper()
