@@ -33,8 +33,8 @@ class Test_encrypt_decrypt(unittest.TestCase):
 
         for sym in stubs:
             #Заменяем "пробелы" на единый символ
-            test_res_1_1 = test_res_1_1.replace(sym, '#')
-            test_res_1_2 = test_res_1_2.replace(sym, '#')
+            test_res_1_1 = test_res_1_1.replace(sym, ' ')
+            test_res_1_2 = test_res_1_2.replace(sym, ' ')
 
         self.assertEqual(test_res_1_1, test_res_1_2)
 

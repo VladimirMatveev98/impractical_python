@@ -70,4 +70,4 @@ def decrypt(row1, row2, row3):
 
 
 if __name__ == '__main__':
-    main(cipher_text)
+    main(cipher_text, DEBUG)

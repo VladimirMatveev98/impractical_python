@@ -64,4 +64,4 @@ def encrypt(rails):
 
 
 if __name__ == '__main__':
-    main(plaintext)
+    main(plaintext, DEBUG)
