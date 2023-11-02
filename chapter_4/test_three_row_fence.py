@@ -39,5 +39,10 @@ class Test_encrypt_decrypt(unittest.TestCase):
         self.assertEqual(test_res_1_1, test_res_1_2)
 
 
+    def test_prepare_encrypt(self):
+        """Тестирует функцию удаления пробелов"""
+        pass
+
+
 if __name__ == "__main__":
   unittest.main()
